@@ -7,6 +7,16 @@
 - Melakukan pembagian subnet terlebih dahulu. Disini kelompok kami menggunakan metode VLSM (Variable Length Subnet Masking).
 <img src="https://user-images.githubusercontent.com/61219556/103123551-51302000-46b7-11eb-96e0-b7cf9f43c9b5.jpg" width="500" height="auto">
 
+Keterangan	:
+1. SURABAYA diberikan IP TUNTAP
+2. MALANG merupakan DNS Server diberikan IP DMZ
+3. MOJOKERTO merupakan DHCP Server diberikan IP DMZ
+4. MADIUN dan PROBOLINGGO merupakan WEB Server
+5. Setiap Server diberikan memory sebesar 128M
+6. Client dan Router diberikan memori sebesar 96M
+7. Jumlah host pada subnet SIDOARJO 200 Host
+8. Jumlah host pada subnet GRESIK 210 Host
+
 - Menentukan jumlah alamat IP yang dibutuhkan oleh tiap subnet dan lakukan labelling netmask berdasarkan jumlah IP yang dibutuhkan :
 	<!DOCTYPE html>
 	<html>
