@@ -301,5 +301,24 @@ address 192.168.1.2
 netmask 255.255.255.0
 gateway 192.168.1.1
 ```
+- Jalankan perintah `iptables –t nat –A POSTROUTING –o eth0 –j MASQUERADE –s 192.168.0.0/16` untuk koneksi ke jaringan luar
+- Melakukan Routing dengan konfigurasi sebagai berikut :
 
+**SURABAYA**
+```
+route add -net 192.168.1.0 netmask 255.255.255.0 gw 192.168.0.2
+route add -net 192.168.2.0 netmask 255.255.255.0 gw 192.168.0.6
+route add -net 10.151.83.48 netmask 255.255.255.248 gw 192.168.0.2
+route add -net 192.168.0.8 netmask 255.255.255.248 gw 192.168.0.6
+```
+
+**KEDIRI**
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.0.5
+```
+
+**BATU**
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.0.1
+```
 
