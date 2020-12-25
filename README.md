@@ -119,3 +119,33 @@
 	 </table>
 	</body>
 	</html>
+	
+**SUBNET SERVER**
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	 <table>
+		<tr>
+			<td> Interface </td>
+			<td> IP </td>
+			<td> Subnet </td>
+			<td> Netmask </td>
+		</tr>
+		<tr>
+			<td> Malang (DNS Server) </td>
+			<td> 10.151.83.50 </td>
+			<td> /29 </td>
+			<td> 255.255.255.248 </td>
+		</tr>
+		<tr>
+			<td> Mojokerto (DHCP Server) </td>
+			<td> 10.151.83.51 </td>
+			<td> /29 </td>
+			<td> 255.255.255.248 </td>
+		</tr>
+	 </table>
+	</body>
+	</html>
