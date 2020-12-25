@@ -211,7 +211,7 @@ netmask 255.255.255.252
 ```
 
 **KEDIRI**
-``
+```
 auto eth0
 iface eth0 inet static
 address 192.168.0.6
@@ -227,16 +227,16 @@ auto eth2
 iface eth2 inet static
 address 192.168.2.1
 netmask 255.255.255.0
-``
+```
 
 **MADIUN**
-``
+```
 auto eth0
 iface eth0 inet static
 address 192.168.0.10
 netmask 255.255.255.248
 gateway 192.168.0.9
-``
+```
 
 **PROBOLINGGO** 
 ```
@@ -299,5 +299,7 @@ auto eth0
 iface eth0 inet static
 address 192.168.1.2
 netmask 255.255.255.0
-```
 gateway 192.168.1.1
+```
+
+
