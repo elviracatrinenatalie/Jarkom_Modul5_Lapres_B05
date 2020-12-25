@@ -59,8 +59,7 @@
 - Membuat pohon dari VLSM serta subnetting.
 <img src="https://user-images.githubusercontent.com/61219556/103123987-b6d0dc00-46b8-11eb-9433-eda56166f8eb.png" width="500" height="auto">
 
-
-** SUBNET **
+- ** SUBNET **
 	<!DOCTYPE html>
 	<html>
 	<head>
