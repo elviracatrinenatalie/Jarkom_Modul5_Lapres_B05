@@ -159,6 +159,9 @@ Keterangan	:
 	</body>
 	</html>
 
+- Karena setiap antar router dan antara router dengan klien dihubungkan dengan Switch, maka didapatkan gambar topologi sebagai berikut :
+<img src="https://user-images.githubusercontent.com/61219556/103128569-76795a00-46c8-11eb-86c2-d56c78b0d4f8.JPG" width="500" height="auto">
+
 - Sehingga, di dapatkan konfigurasi `topologi.sh`
 ```
 # Switch
@@ -184,3 +187,117 @@ xterm -T MOJOKERTO -e linux ubd0=MOJOKERTO,jarkom umid=MOJOKERTO eth0=daemon,,,s
 xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch5 mem=96M &
 xterm -T SIDORJO -e linux ubd0=SIDORJO,jarkom umid=SIDORJO eth0=daemon,,,switch6 mem=96M &
 ```
+- Pada UML yang berperan sebagai router, melakukan uncomment pada perintah `net.ipv4.ip_forward=1` agar dapat meneruskan route yaitu dengan cara mengetikkan `nano /etc/sysctl.conf`. Lalu, ketik `sysctl -p`, untuk mengaktifkan perubahan baru. Kemudian, atur interface pada setiap UML dengan menjalankan perintah `nano /etc/network/interfaces` kemudian melakukan `restart networking restart`.
+
+- Berikut setting file `/etc/network/interfaces` untuk setiap UML:
+
+** SURABAYA **
+```
+auto eth0
+iface eth0 inet static
+address 10.151.74.26
+netmask 255.255.255.252
+gateway 10.151.74.25
+
+auto eth1
+iface eth1 inet static
+address 192.168.0.5
+netmask 255.255.255.252
+
+auto eth2
+iface eth2 inet static
+address 192.168.0.1
+netmask 255.255.255.252
+```
+
+**KEDIRI**
+``
+auto eth0
+iface eth0 inet static
+address 192.168.0.6
+netmask 255.255.255.252
+gateway 192.168.0.5
+
+auto eth1
+iface eth1 inet static
+address 192.168.0.9
+netmask 255.255.255.248
+
+auto eth2
+iface eth2 inet static
+address 192.168.2.1
+netmask 255.255.255.0
+``
+
+**MADIUN**
+``
+auto eth0
+iface eth0 inet static
+address 192.168.0.10
+netmask 255.255.255.248
+gateway 192.168.0.9
+``
+
+**PROBOLINGGO** 
+```
+auto eth0
+iface eth0 inet static
+address 192.168.0.11
+netmask 255.255.255.248
+gateway 192.168.0.9
+```
+
+**GRESIK**
+```
+auto eth0
+iface eth0 inet static
+address 192.168.2.2
+netmask 255.255.252.0
+gateway 192.168.2.1
+```
+
+**BATU**
+```
+auto eth0	
+iface eth0 inet static
+address 192.168.0.2
+netmask 255.255.255.252
+gateway 192.168.0.1
+
+auto eth1	
+iface eth1 inet static
+address 10.151.83.49
+netmask 255.255.255.248
+
+auto eth2	
+iface eth2 inet static
+address 192.168.1.1
+netmask 255.255.255.0
+```
+
+**MALANG**
+```
+auto eth0
+iface eth0 inet static
+address 10.151.83.50
+netmask 255.255.255.248
+gateway 10.151.83.49
+```
+
+**MOJOKERTO**
+```
+auto eth0
+iface eth0 inet static
+address 10.151.83.51
+netmask 255.255.255.248
+gateway 10.151.83.49
+```
+
+**SIDORJO**
+```
+auto eth0
+iface eth0 inet static
+address 192.168.1.2
+netmask 255.255.255.0
+```
+gateway 192.168.1.1
