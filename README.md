@@ -4,7 +4,6 @@
 - Vania Meilani Taqiyyah 05111840000045
 
 ## 1.
-### A. Membuat topologi 
 - Melakukan pembagian subnet terlebih dahulu. Disini kelompok kami menggunakan metode VLSM (Variable Length Subnet Masking).
 <img src="https://user-images.githubusercontent.com/61219556/103123551-51302000-46b7-11eb-96e0-b7cf9f43c9b5.jpg" width="500" height="auto">
 
