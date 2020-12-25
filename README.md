@@ -191,8 +191,7 @@ xterm -T SIDORJO -e linux ubd0=SIDORJO,jarkom umid=SIDORJO eth0=daemon,,,switch6
 
 - Berikut setting file `/etc/network/interfaces` untuk setiap UML:
 
-** SURABAYA **
-
+**SURABAYA**
 ```
 auto eth0
 iface eth0 inet static
