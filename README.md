@@ -27,8 +27,8 @@ Keterangan	:
 
 	 <table>
 		<tr>
-			<td> Subnet </td>
-			<td> Jumlah IP </td>
+			<td> SUBNET </td>
+			<td> JUMLAH IP </td>
 	    <td> Submask </td>
 		</tr>
 		<tr>
@@ -77,11 +77,11 @@ Keterangan	:
 	<body>
 	 <table>
 		<tr>
-			<td> Subnet </td>
-			<td> Jumlah IP </td>
-			<td> Submask </td>
-			<td> Network ID </td>
-			<td> Netmask </td>
+			<td> SUBNET </td>
+			<td> JUMLAH IP </td>
+			<td> SUBMASK </td>
+			<td> NETWORK ID </td>
+			<td> NETMASK </td>
 		</tr>
 		<tr>
 			<td> A1 </td>
@@ -138,10 +138,10 @@ Keterangan	:
 	<body>
 	 <table>
 		<tr>
-			<td> Interface </td>
+			<td> INTERFACE </td>
 			<td> IP </td>
-			<td> Subnet </td>
-			<td> Netmask </td>
+			<td> SUBNET </td>
+			<td> NETMASK </td>
 		</tr>
 		<tr>
 			<td> Malang (DNS Server) </td>
