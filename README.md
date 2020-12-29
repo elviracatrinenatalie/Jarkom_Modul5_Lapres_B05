@@ -358,8 +358,7 @@ subnet 192.168.2.0 netmask 255.255.255.0 {
 	option domain-name-servers 10.151.83.50;
 	option domain-name-servers 202.46.129.2;
 	default-lease-time 600;
-	max-lease-time 7200;
-}
+	max-lease-time 7200;}
 ```
 - Restart menggunakan `service isc-dhcp-server restart`.
 
@@ -388,3 +387,15 @@ contoh : Client GRESIK
 
 - Restart menggunakan `service networking restart`.
 
+## 1.Router SURABAYA bisa mengakses keluar tanpa menggunakan MASQUERADE.
+- Pada Router **SURABAYA**, kami membuat file `nano soal1.sh`.
+- Lalu, isi file dengan :
+```
+iptables -t nat -A POSTROUTING -o eth0 -j SNAT -s 192.168.0.0/16 --to-source 10.151.74.26
+```
+- Lakukan `bash soal1.sh`.
+- Untuk memeriksanya, kami melakukan `ping google.com` pada semua UML. Salah satu contohnya yaitu :
+
+<img src="https://user-images.githubusercontent.com/61219556/103273622-57453a00-49f2-11eb-89ad-547beb7d6afa.JPG" width="500" height="auto">
+
+- 
