@@ -3,7 +3,7 @@
 - Elvira Catrine Natalie 05111840000016
 - Vania Meilani Taqiyyah 05111840000045
 
-## 1.
+## A dan B
 - Melakukan pembagian subnet terlebih dahulu. Disini kelompok kami menggunakan metode **VLSM (Variable Length Subnet Masking)**.
 <img src="https://user-images.githubusercontent.com/61219556/103123551-51302000-46b7-11eb-96e0-b7cf9f43c9b5.jpg" width="500" height="auto">
 
@@ -301,7 +301,9 @@ address 192.168.1.2
 netmask 255.255.255.0
 gateway 192.168.1.1
 ```
-- Jalankan perintah `iptables –t nat –A POSTROUTING –o eth0 –j MASQUERADE –s 192.168.0.0/16` untuk koneksi ke jaringan luar
+- Jalankan perintah `iptables –t nat –A POSTROUTING –o eth0 –j MASQUERADE –s 192.168.0.0/16` untuk koneksi ke jaringan luar pada semua router yang ada. 
+
+## C. ROUTING
 - Melakukan Routing dengan konfigurasi sebagai berikut :
 
 **SURABAYA**
@@ -321,4 +323,67 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.0.5
 ```
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.0.1
 ```
--
+- Jalankan `route.sh`.
+
+## D. DHCP SERVER & RELAY
+- Selanjutnya mengatur DHCP Server dan DHCP Relay. Karena **MOJOKERTO** menjadi **DHCP Server**, perlu diinstallkan dengan perintah `apt-get install isc-dhcp-server`, sedangkan **KEDIRI**, **SURABAYA**, dan **BATU** yang akan menjadi **DHCP Relay**, perlu diinstallkan dengan perintah `apt-get install isc-dhcp-relay`. 
+
+#### Konfigurasi DHCP Server
+- Buka file `/etc/default/isc-dhcp-server`.
+- Tambahkan interface menjadi `INTERFACE="eth0"`.
+- Buka file `/etc/dhcp/dhcpd.conf`
+- Tambahkan script seperti dibawah ini :
+```
+subnet 10.151.83.48 netmask 255.255.255.248 {
+	option routers 10.151.83.49;
+	option broadcast-address 10.151.83.55;
+}
+
+#SIDOARJO
+subnet 192.168.1.0 netmask 255.255.255.0 {
+	range 192.168.1.2 192.168.1.254;
+	option routers 192.168.1.1;
+	option broadcast-address 192.168.1.255;
+	option domain-name-servers 10.151.83.50;
+	option domain-name-servers 202.46.129.2;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+
+#GRESIK
+subnet 192.168.2.0 netmask 255.255.255.0 {
+	range 192.168.2.2 192.168.2.254;
+	option routers 192.168.2.1;
+	option broadcast-address 192.168.2.255;
+	option domain-name-servers 10.151.83.50;
+	option domain-name-servers 202.46.129.2;
+	default-lease-time 600;
+	max-lease-time 7200;
+}
+```
+- Restart menggunakan `service isc-dhcp-server restart`.
+
+#### Konfigurasi DHCP Relay
+- Buka file `/etc/default/isc-dhcp-relay`.
+- Lalu, edit file seperti dibawah ini :
+```
+SERVERS="10.151.83.51" #IP MOJOKERTO
+```
+- Untuk **KEDIRI** dan **BATU** ganti Interfaces dengan `INTERFACES="eth0 eth1 eth2"`.
+- Untuk **SURABAYA** ganti Interfaces dengan `INTERFACES="eth1 eth2"`.
+- Restart menggunakan `service isc-dhcp-relay restart`.
+
+#### Konfigurasi DHCP Client
+- Lalu, karena disuruh ip dinamis, maka edit file `/etc/network/interfaces` pada **GRESIK** dan **SIDOARJO** :
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+```
+contoh : Client GRESIK
+<img src="https://user-images.githubusercontent.com/61219556/103269221-f31d7880-49e7-11eb-8c46-4898620ae51c.JPG" width="500" height="auto">
+
+- Restart menggunakan `service networking restart`.
+
