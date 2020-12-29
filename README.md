@@ -394,11 +394,26 @@ contoh : Client GRESIK
 iptables -t nat -A POSTROUTING -o eth0 -j SNAT -s 192.168.0.0/16 --to-source 10.151.74.26
 ```
 Keterangan :
-- `--to-source 10.151.74.26` : source ip address akan diubah dengan ip eth0 **SURABAYA**.
+`--to-source 10.151.74.26` : source ip address akan diubah dengan ip eth0 **SURABAYA**.
+
 - Lakukan `bash soal1.sh`.
 - Untuk memeriksanya, kami melakukan `ping google.com` pada semua UML. Salah satu contohnya yaitu :
 
 <img src="https://user-images.githubusercontent.com/61219556/103273622-57453a00-49f2-11eb-89ad-547beb7d6afa.JPG" width="500" height="auto">
 
 ## 2. DROP semua akses SSH dari luar topologi (UML) pada server yang memiliki IP DMZ dan konfigurasi di router SURABAYA
-- 
+- Pada router **SURABAYA**, kami membuat file `nano soal2.sh`.
+- Lalu, isi file dengan  :
+```
+iptables -A FORWARD -i eth0 -d 10.151.83.48/29 -p tcp --dport 22 -j DROP
+```
+keterangan :
+`-p tcp` 	: karena menggunakan SSH
+`--dport 22` 	: port SSH
+
+- Lakukan `bash soal2.sh`.
+- Untuk memeriksanya, di **MALANG** ketikan `nc -l -p 22`. Dan pada client (disini kami menggunakan client **SIDOARJO**) ketikan `nc 10.151.83.50 22`.
+- Ketika kata apa saja pada client, apabila kata tersebut masuk pada server **MALANG** maka konfigurasi tersebut berhasil.
+
+<img src="https://user-images.githubusercontent.com/61219556/103282942-d5610b00-4a09-11eb-8c70-8a8364803783.JPG" width="500" height="auto">
+
