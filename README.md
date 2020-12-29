@@ -444,7 +444,9 @@ iptables -A INPUT -s 192.168.1.0/24 -j REJECT
 - Pada **MALANG**, kami membuat file `nano soal5.sh`.
 - Lalu, isi file dengan :
 ```
----
+iptables -A INPUT -s 192.168.2.2/24 -m time --timestart 07:00 --timestop 17:00 -j REJECT 
 ```
 - Lakukan `bash soal5.sh`.
 - Untuk memeriksanya, pada **GRESIK** lakukan `ping 10.151.83.50`. Apabila pada UML, waktu nya masuk antara 17:00 - 07:00 esok hari , maka ping tersebut akan berhasil, begitu juga sebaliknya.
+
+[ 6 DAN 7 UP ]
