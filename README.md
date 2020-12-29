@@ -393,7 +393,7 @@ contoh : Client GRESIK
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j SNAT -s 192.168.0.0/16 --to-source 10.151.74.26
 ```
-Keterangan :
+Keterangan :<br>
 `--to-source 10.151.74.26` : source ip address akan diubah dengan ip eth0 **SURABAYA**.
 
 - Lakukan `bash soal1.sh`.
@@ -407,8 +407,8 @@ Keterangan :
 ```
 iptables -A FORWARD -i eth0 -d 10.151.83.48/29 -p tcp --dport 22 -j DROP
 ```
-keterangan :
-`-p tcp` 	: karena menggunakan SSH
+keterangan :<br>
+`-p tcp` 	: karena menggunakan SSH <br>
 `--dport 22` 	: port SSH
 
 - Lakukan `bash soal2.sh`.
