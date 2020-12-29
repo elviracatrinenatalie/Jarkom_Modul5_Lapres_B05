@@ -191,7 +191,7 @@ xterm -T SIDORJO -e linux ubd0=SIDORJO,jarkom umid=SIDORJO eth0=daemon,,,switch6
 
 - Berikut setting file `/etc/network/interfaces` untuk setiap UML:
 
-**SURABAYA**
+**SURABAYA (sebagai Router)** 
 ```
 auto eth0
 iface eth0 inet static
@@ -210,7 +210,7 @@ address 192.168.0.1
 netmask 255.255.255.252
 ```
 
-**KEDIRI**
+**KEDIRI (sebagai Router)** 
 ```
 auto eth0
 iface eth0 inet static
@@ -229,7 +229,7 @@ address 192.168.2.1
 netmask 255.255.255.0
 ```
 
-**MADIUN**
+**MADIUN (sebagai web server)**
 ```
 auto eth0
 iface eth0 inet static
@@ -238,7 +238,7 @@ netmask 255.255.255.248
 gateway 192.168.0.9
 ```
 
-**PROBOLINGGO** 
+**PROBOLINGGO (sebagai web server)** 
 ```
 auto eth0
 iface eth0 inet static
@@ -247,7 +247,7 @@ netmask 255.255.255.248
 gateway 192.168.0.9
 ```
 
-**GRESIK**
+**GRESIK (sebagai Client)**
 ```
 auto eth0
 iface eth0 inet static
@@ -256,7 +256,7 @@ netmask 255.255.252.0
 gateway 192.168.2.1
 ```
 
-**BATU**
+**BATU (sebagai Router)**
 ```
 auto eth0	
 iface eth0 inet static
@@ -275,7 +275,7 @@ address 192.168.1.1
 netmask 255.255.255.0
 ```
 
-**MALANG**
+**MALANG (sebagai DNS Server)**
 ```
 auto eth0
 iface eth0 inet static
@@ -284,7 +284,7 @@ netmask 255.255.255.248
 gateway 10.151.83.49
 ```
 
-**MOJOKERTO**
+**MOJOKERTO (sebagai DHCP Server)**
 ```
 auto eth0
 iface eth0 inet static
@@ -293,7 +293,7 @@ netmask 255.255.255.248
 gateway 10.151.83.49
 ```
 
-**SIDORJO**
+**SIDORJO (sebagai Client)**
 ```
 auto eth0
 iface eth0 inet static
