@@ -383,6 +383,7 @@ auto eth0
 iface eth0 inet dhcp
 ```
 contoh : Client GRESIK
+
 <img src="https://user-images.githubusercontent.com/61219556/103269221-f31d7880-49e7-11eb-8c46-4898620ae51c.JPG" width="500" height="auto">
 
 - Restart menggunakan `service networking restart`.
