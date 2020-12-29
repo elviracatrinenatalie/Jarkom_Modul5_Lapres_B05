@@ -417,3 +417,34 @@ keterangan :<br>
 
 <img src="https://user-images.githubusercontent.com/61219556/103282942-d5610b00-4a09-11eb-8c70-8a8364803783.JPG" width="500" height="auto">
 
+## 3. Membatasi DHCP dan DNS server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server, selebihnya akan di DROP.
+- Pada server **MALANG** dan **MOJOKERTO**, kami membuat file `nano soal3.sh`.
+- Lalu, isi dengan :
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
+```
+keterangan : <br>
+`-p icmp`		: menggunakan koneksi icmp <br>
+`--connlimit-mask 0`	: menandakan koneksi untuk semua sumber (berasal dari mana saja).
+
+- lakukan `bash soal3.sh`.
+- Untuk memeriksanya, maka bisa melakukan `ping <IP MALANG>` atau `ping <IP MOJOKERO>` di 4 UML yang berbeda secara bersamaan. Maka akan ada 1 UML yang tidak bisa akes karena telah ada 3 koneksi yang masuk secara bersamaan. 
+
+## 4. Akses dari subnet SIDOARJO hanya diperbolehkan pada pukul 07.00 - 17.00 pada hari Senin sampai Jumat dengan konfigurasi pada MALANG. Selain itu paket akan di REJECT.
+- Pada **MALANG**, kami membuat file `nano soal4.sh`.
+- Lalu, isi file dengan :
+```
+iptables -A INPUT -s 192.168.1.0/24 -m time --timestart 07:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -j REJECT
+```
+- Lakukan `bash soal4.sh`.
+- Untuk memeriksanya, pada **SIDOARJO** lakukan `ping 10.151.83.50`. Apabila pada UML, waktu nya masuk antara 07:00 - 17:00 , maka ping tersebut akan berhasil, begitu juga sebaliknya. 
+
+## 5. Akses dari subnet GRESIK pukul 17.00 hingga pukul 07.00 setiap harinya dengan konfigurasi pada MALANG. Selain itu paket akan di REJECT.
+- Pada **MALANG**, kami membuat file `nano soal5.sh`.
+- Lalu, isi file dengan :
+```
+---
+```
+- Lakukan `bash soal5.sh`.
+- Untuk memeriksanya, pada **GRESIK** lakukan `ping 10.151.83.50`. Apabila pada UML, waktu nya masuk antara 17:00 - 07:00 esok hari , maka ping tersebut akan berhasil, begitu juga sebaliknya.
